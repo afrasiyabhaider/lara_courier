@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Courier;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel as Excel;
 
@@ -17,7 +18,9 @@ class CourierRecordController extends Controller
      */
     public function index()
     {
-        //
+        $courier_record = Courier::get();
+
+        return view('courier_record.index', compact('courier_record'));
     }
 
     /**

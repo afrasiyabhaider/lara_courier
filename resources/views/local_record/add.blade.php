@@ -8,6 +8,10 @@
             Save Local Record
             <i class="fa fa-save text-success"></i>
         </h1>
+        <a href="{{url('local-record')}}" class="btn btn-success">
+            <i class="fa fa-eye"></i>
+            View Local Record
+        </a>
     </div>
     @php
         $message = "Must have Following Columns in file \t Hello";
@@ -39,9 +43,4 @@
             </div>
         </form>
     </div>
-@endsection
-@section('js')
-    <script src="{{asset('assets/js/filepond-plugin-file-validate-size.js')}}"></script>
-    <script src="{{asset('assets/js/filepond-plugin-file-validate-type.js')}}"></script>
-    <script src="{{asset('assets/js/filepond-plugin-file-encode.js')}}"></script>
 @endsection

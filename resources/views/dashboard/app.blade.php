@@ -9,10 +9,18 @@
     </title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     @include('sweetalert::alert')
     <!-- FilePond -->
     <link rel="stylesheet" href="{{asset('assets/css/filepond.min.css')}}">
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{asset('assets/fontawesome/css/all.min.css')}}">
+
+    <!-- Jquery Data Tables -->
+    <link rel="stylesheet" href="{{asset('assets/dataTables/css/jquery.dataTables.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/dataTables/css/dataTables.bootstrap4.min.css')}}">
+
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('dashboard/dist/css/adminlte.min.css')}}">
     <!-- overlayScrollbars -->
@@ -112,7 +120,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                                    <a href="{{url('local-record')}}" class="nav-link">
                                         <i class="fa fa-eye nav-icon"></i>
                                         <p>View Record</p>
                                     </a>
@@ -181,7 +189,7 @@
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-            <div class="container-fluid pt-5">
+            <div class="container-fluid pt-3">
                 @yield('content')
             </div>
             <!-- Content Header (Page header) -->
@@ -224,14 +232,26 @@
 
     <!-- jQuery -->
     <script src="{{asset('dashboard/jquery/jquery.min.js')}}"></script>
+
+    {{-- @include('sweetalert::alert') --}}
+
+
     <script>
         // $.widget.bridge('uibutton', $.ui.button)
     </script>
     <!-- File Pond -->
     <script src="{{asset('assets/js/filepond.min.js')}}"></script>
+     <script src="{{asset('assets/js/filepond-plugin-file-validate-size.js')}}"></script>
+    <script src="{{asset('assets/js/filepond-plugin-file-validate-type.js')}}"></script>
+    <script src="{{asset('assets/js/filepond-plugin-file-encode.js')}}"></script>
+
+    <!-- Jquery Data Tables -->
+    <script src="{{asset('assets/dataTables/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('assets/dataTables/js/dataTables.bootstrap4.min.js')}}"></script>
 
     @yield('js')
     <script src="{{asset('assets/fontawesome/js/all.min.js')}}"></script>
+
     <script src="{{asset('dashboard/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
     <!-- AdminLTE App -->

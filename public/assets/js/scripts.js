@@ -3,12 +3,12 @@
  *
  */
 
+const inputElement = document.getElementById("fileUpload");
 FilePond.registerPlugin(
     FilePondPluginFileEncode,
     FilePondPluginFileValidateType,
     FilePondPluginFileValidateSize
 );
-const inputElement = document.getElementById("fileUpload");
 const filepond = FilePond.create(inputElement, {
     name: "material[]",
     allowMultiple: true,
@@ -37,3 +37,12 @@ const filepond = FilePond.create(inputElement, {
 $(function() {
     $('[data-toggle="tooltip"]').tooltip()
 })
+
+/**
+ * Jquery Data Tables Initializing
+ *
+ */
+
+$(document).ready(function() {
+    $('#data_table').DataTable();
+});

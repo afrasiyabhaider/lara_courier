@@ -5,7 +5,10 @@ namespace App\Imports;
 use App\Courier;
 use Maatwebsite\Excel\Concerns\ToModel;
 
-class CourierImport implements ToModel
+use Maatwebsite\Excel\Concerns\WithStartRow;
+use PhpOffice\PhpSpreadsheet\Shared\Date;
+
+class CourierImport implements ToModel, WithStartRow
 {
     /**
      * @param array $row
@@ -14,6 +17,7 @@ class CourierImport implements ToModel
      */
     public function model(array $row)
     {
+        $date = Date::excelToDateTimeObject($row[7]);
         return new Courier([
             'customer_name'     => $row[0],
             'customer_cnic'     => $row[1],
@@ -22,8 +26,7 @@ class CourierImport implements ToModel
             'shipping_paid'     => (int) $row[4],
             'parcel_weight'     => (float) $row[5],
             'shipping_address'     => $row[6],
-            'shipped_on'     => $row[6],
-            // 'shipped_on'     => Carbon::parse(Carbon::create($row[6])->format('dd/M/y')),
+            'shipped_on'     => $date->format('Y-m-d'),
             'deliver_in_days'     => (int) $row[8]
         ]);
     }
@@ -31,5 +34,10 @@ class CourierImport implements ToModel
     public function batchSize(): int
     {
         return 1000;
+    }
+
+    public function startRow(): int
+    {
+        return 2;
     }
 }

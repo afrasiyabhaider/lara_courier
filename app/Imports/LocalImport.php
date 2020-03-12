@@ -3,10 +3,12 @@
 namespace App\Imports;
 
 use App\Local;
-use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithStartRow;
+use PhpOffice\PhpSpreadsheet\Shared\Date;
 
-class LocalImport implements ToModel
+
+class LocalImport implements ToModel, WithStartRow
 {
     /**
      * @param array $row
@@ -15,6 +17,7 @@ class LocalImport implements ToModel
      */
     public function model(array $row)
     {
+        $date = Date::excelToDateTimeObject($row[6]);
         return new Local([
             'customer_name'     => $row[0],
             'customer_cnic'     => $row[1],
@@ -22,8 +25,7 @@ class LocalImport implements ToModel
             'shipping_charged'     => (int) $row[3],
             'parcel_weight'     => (float) $row[4],
             'shipping_address'     => $row[5],
-            'shipped_on'     => $row[6],
-            // 'shipped_on'     => Carbon::parse(Carbon::create($row[6])->format('dd/M/y')),
+            'shipped_on'     => $date->format('Y-m-d'),
             'deliver_in_days'     => (int) $row[7]
         ]);
     }
@@ -31,5 +33,9 @@ class LocalImport implements ToModel
     public function batchSize(): int
     {
         return 1000;
+    }
+    public function startRow(): int
+    {
+        return 2;
     }
 }

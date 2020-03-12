@@ -167,6 +167,9 @@ return [
          */
 
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+        ConsoleTVs\Charts\ChartsServiceProvider::class,
+
 
         /**
          * Application Service Providers...
@@ -176,6 +179,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
 
     ],
 
@@ -231,6 +235,10 @@ return [
 
         // Laravel Excel
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+
+        // Real-Rashid Sweet alert
+        'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+
 
     ],
 

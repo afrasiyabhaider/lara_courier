@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel as Excel;
 
 use App\Imports\LocalImport;
+use App\Local;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 
 class LocalRecordController extends Controller
@@ -17,7 +19,9 @@ class LocalRecordController extends Controller
      */
     public function index()
     {
-        //
+        $local_record = Local::get();
+
+        return view('local_record.index', compact('local_record'));
     }
 
     /**
@@ -27,6 +31,7 @@ class LocalRecordController extends Controller
      */
     public function create()
     {
+        // dd(Carbon::create('5/10/2020')->toDateTime()->format('d/m/Y'));
         return view('local_record.add');
     }
 
@@ -46,7 +51,7 @@ class LocalRecordController extends Controller
         Excel::import(new LocalImport, storage_path('app/' . $file_name));
         // Excel::import(new LocalImport, $request->file('local-file'));
 
-        return redirect()->back();
+        return redirect(url('local-record'));
     }
 
     /**
